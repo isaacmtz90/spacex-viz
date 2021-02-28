@@ -49,7 +49,7 @@ export default function SpaceX() {
                             color="textPrimary"
                             gutterBottom
                         >
-                            SpaceX API
+                            SpaceX Reader
                         </Typography>
                         <ButtonGroup
                             color="primary"
