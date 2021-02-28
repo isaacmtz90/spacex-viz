@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const CardGrid = ({ cards, selectedCategory }) => {
+export const CardGrid = ({ cards, selectedCategory, handleCardSelection }) => {
     const classes = useStyles();
     return (
         <Container className={classes.cardGrid} maxWidth="lg">
@@ -22,6 +22,7 @@ export const CardGrid = ({ cards, selectedCategory }) => {
                         key={card.id}
                         card={card}
                         category={selectedCategory}
+                        handleCardSelection={handleCardSelection}
                     />
                 ))}
             </Grid>
@@ -32,4 +33,5 @@ export const CardGrid = ({ cards, selectedCategory }) => {
 CardGrid.propTypes = {
     cards: PropTypes.arrayOf(PropTypes.object),
     selectedCategory: PropTypes.string,
+    handleCardSelection: PropTypes.func,
 };

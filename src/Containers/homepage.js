@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { categories } from '../Services/spaceX/spacexApiCategories';
 import { useAsyncSpaceXResources } from '../Hooks/useSpaceXResource';
 import { CardGrid } from '../Components/cardGrid';
+import { DetailsDialog } from '../Components/detailsDialog';
 
 const useStyles = makeStyles((theme) => ({
     mainContent: {
@@ -22,8 +23,18 @@ export default function SpaceX() {
     const classes = useStyles();
     const [category, setCategory] = useState('rockets');
     const [cardItems, setCardItems] = useState([]);
+    const [selectedCard, setSelectedCard] = useState({});
+    const [openDialog, setOpenDialog] = React.useState(false);
+
+    const handleDialogOpen = (card) => {
+        setSelectedCard(card);
+        setOpenDialog(true);
+    };
+    const handleClose = () => {
+        setOpenDialog(false);
+        setSelectedCard({});
+    };
     const isLoading = useAsyncSpaceXResources(category, setCardItems);
-    console.log(cardItems);
     return (
         <React.Fragment>
             <CssBaseline />
@@ -58,11 +69,17 @@ export default function SpaceX() {
                             <CardGrid
                                 cards={cardItems}
                                 selectedCategory={category}
+                                handleCardSelection={handleDialogOpen}
                             />
                         )}
                         {isLoading && <LinearProgress />}
                     </Container>
                 </div>
+                <DetailsDialog
+                    open={openDialog}
+                    handleClose={handleClose}
+                    content={selectedCard}
+                ></DetailsDialog>
             </main>
         </React.Fragment>
     );

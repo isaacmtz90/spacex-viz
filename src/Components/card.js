@@ -25,14 +25,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const ContentCard = ({ card, category }) => {
+export const ContentCard = ({ card, category, handleCardSelection }) => {
     const classes = useStyles();
     const description =
         card.description && card.description.length > MAX_DESC_LENGTH
             ? `${card.description.substring(0, MAX_DESC_LENGTH)}...`
             : card.description;
     return (
-        <Grid item key={'asdf'} xs={12} sm={6} md={4}>
+        <Grid item key={card.id} xs={12} sm={6} md={4}>
             <Card className={classes.card}>
                 <CardMedia
                     className={classes.cardMedia}
@@ -40,13 +40,20 @@ export const ContentCard = ({ card, category }) => {
                     title="Image title"
                 />
                 <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h6" component="h6">
+                        {category}
+                    </Typography>
                     <Typography gutterBottom variant="h5" component="h2">
                         {card.name}
                     </Typography>
                     <Typography>{description}</Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" color="primary">
+                    <Button
+                        size="small"
+                        color="primary"
+                        onClick={() => handleCardSelection(card)}
+                    >
                         View more
                     </Button>
                 </CardActions>
@@ -58,4 +65,5 @@ export const ContentCard = ({ card, category }) => {
 ContentCard.propTypes = {
     card: PropTypes.object,
     category: PropTypes.string,
+    handleCardSelection: PropTypes.func,
 };

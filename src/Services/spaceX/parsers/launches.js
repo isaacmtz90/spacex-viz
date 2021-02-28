@@ -10,10 +10,10 @@ const launchesParser = (launchPayload) => {
         links: [
             { name: 'wikipedia', url: launchPayload.links?.wikipedia || '' },
             {
-                name: 'article_link',
+                name: 'article',
                 url: launchPayload.links?.article_link || '',
             },
-            { name: 'video_link', url: launchPayload.links?.youtube_id || '' },
+            { name: 'video', url: launchPayload.links?.video_link || '' },
         ],
     };
 };
