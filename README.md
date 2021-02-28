@@ -1,6 +1,7 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+View at: https://xenodochial-shaw-d21496.netlify.app
 
 ## Setup instructions
 
